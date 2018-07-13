@@ -15,7 +15,7 @@ export class HeroDetailResolver implements Resolve<Hero> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Hero> {
         const id = +route.paramMap.get('id');
 
-        return this.cs.getHeroFromApi(id).pipe(
+        return this.cs.getHero(id).pipe(
             take(1),
             map(data => {
                 if (data) {
