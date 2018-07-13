@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 import { HeroDetailResolver } from './resolver';
+import { MessagesComponent } from './messages/messages.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -15,5 +16,6 @@ export const routes: Routes = [
         }
     },
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'logs', component: MessagesComponent },
     { path: '**', component: NotFoundComponent }
 ];
