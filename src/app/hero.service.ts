@@ -19,27 +19,27 @@ const httpFormOptions = {
 })
 export class HeroService {
 
-  private heroesUrl = 'http://localhost:26622/api/product';  // URL to web api
+  private heroesUrl = 'api/heroes';  // URL to web api
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  // getHeroes(): Hero[] {
-  //   return HEROES.slice();
-  // }
+  getHeroes(): Hero[] {
+    return HEROES.slice();
+  }
 
-  // getHeroesAsync(): Observable<Hero[]> {
-  //   // TODO: send the message _after_ fetching the heroes
-  //   this.messageService.add('HeroService: fetched heroes');
-  //   return of(HEROES.slice());
-  // }
+  getHeroesAsync(): Observable<Hero[]> {
+    // TODO: send the message _after_ fetching the heroes
+    this.messageService.add('HeroService: fetched heroes');
+    return of(HEROES.slice());
+  }
 
-  // getHero(id: number): Observable<Hero> {
-  //   // TODO: send the message _after_ fetching the hero
-  //   this.messageService.add(`HeroService: fetched hero id=${id}`);
-  //   return of(HEROES.slice().find(hero => hero.id === id));
-  // }
+  getHero(id: number): Observable<Hero> {
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(HEROES.slice().find(hero => hero.id === id));
+  }
 
   /** GET heroes from the server */
   getHeroesFromApi(): Observable<Hero[]> {
@@ -69,9 +69,9 @@ export class HeroService {
 
   /** POST: add a new hero to the server */
   addHero(hero: Hero): Observable<Hero> {
-    const formdata: FormData = new FormData();
-    formdata.append('data', JSON.stringify(hero));
-    return this.http.post<Hero>(this.heroesUrl, formdata).pipe(
+    // const formdata: FormData = new FormData();
+    // formdata.append('data', JSON.stringify(hero));
+    return this.http.post<Hero>(this.heroesUrl, hero).pipe(
       tap((h: Hero) => this.log(`added hero w/ id=${h.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
